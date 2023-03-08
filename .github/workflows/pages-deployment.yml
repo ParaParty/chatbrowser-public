@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    name: Deploy to Cloudflare Pages
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          check-latest: true
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 7.7.1
+          run_install: |
+            args: [--frozen-lockfile, --strict-peer-dependencies]
+        timeout-minutes: 10
+
+      - name: Build
+        run: pnpm build
+        timeout-minutes: 15
+
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: paraparty-chatbrowser
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        timeout-minutes: 5

@@ -1,0 +1,43 @@
+{
+  "name": "chatbrowser",
+  "private": true,
+  "packageManager": "pnpm@7.7.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.3",
+    "@types/http-proxy": "^1.17.9",
+    "@vueuse/components": "^9.3.1",
+    "@vueuse/core": "^9.3.1",
+    "date-fns": "^2.29.3",
+    "entities": "^4.4.0",
+    "http-proxy": "^1.18.1",
+    "linkify-html": "^4.0.2",
+    "linkifyjs": "^4.0.2",
+    "medium-zoom": "^1.0.6",
+    "ohmyfetch": "^0.4.20",
+    "pinia": "^2.0.23",
+    "pinin": "^0.2.0",
+    "vue": "^3.2.41"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.27.0",
+    "@cloudflare/workers-types": "^3.17.0",
+    "@iconify-json/carbon": "^1.1.9",
+    "@types/node": "^18.11.2",
+    "@unocss/reset": "^0.45.30",
+    "@vitejs/plugin-vue": "^3.1.2",
+    "@vue/compiler-sfc": "^3.2.41",
+    "eslint": "^8.25.0",
+    "typescript": "^4.8.4",
+    "unocss": "^0.45.30",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-icons": "^0.14.12",
+    "unplugin-vue-components": "^0.22.8",
+    "vite": "^3.1.8",
+    "vite-plugin-inspect": "^0.7.5"
+  }
+}
